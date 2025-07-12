@@ -1,3 +1,10 @@
+-- Goal: Show total campaign performance per advertiser, including advertisers who might not have campaigns or metrics yet.
+-- I'm using LEFT JOINs so I don't miss advertisers with no campaigns or campaigns with no metrics.
+-- COALESCE is used to replace NULLs with 0 for impressions, clicks, and spend, which helps avoid confusion or calculation errors.
+-- Filtering by the given list of advertiser IDs.
+-- Grouping by advertiser and campaign so the totals are calculated correctly.
+-- Finally, sorting by impressions and spend to highlight the most active campaigns first.
+
 SELECT 
   a.advertiser_id,
   c.campaign_id,
