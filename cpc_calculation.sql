@@ -1,9 +1,8 @@
--- Goal: Show total campaign performance per advertiser, including advertisers who might not have campaigns or metrics yet.
--- I'm using LEFT JOINs so I don't miss advertisers with no campaigns or campaigns with no metrics.
--- COALESCE is used to replace NULLs with 0 for impressions, clicks, and spend, which helps avoid confusion or calculation errors.
--- Filtering by the given list of advertiser IDs.
--- Grouping by advertiser and campaign so the totals are calculated correctly.
--- Finally, sorting by impressions and spend to highlight the most active campaigns first.
+-- Goal: Calculate CPC (Cost Per Click) for a few specific campaigns, broken down by device type.
+-- I'm filtering by campaign_id and the June 2025 date range as requested.
+-- CPC is calculated as total spend divided by total clicks.
+-- I added a CASE WHEN to avoid division by zero if there are no clicks, and used ROUND to keep the result readable.
+-- Grouping by both campaign_id and device_type so the CPC is broken down properly.
 SELECT 
   campaign_id,
   device_type,
